@@ -1,0 +1,48 @@
+go-rest-api/
+├── cmd/
+│   └── api/
+│       └── main.go            # Точка входа приложения
+│
+├── internal/
+│   ├── api/
+│   │   ├── router.go          # Настройка роутера (chi, middleware)
+│   │   ├── handler.go         # Обработчики запросов (контроллеры)
+│   │   └── response.go        # Вспомогательные функции ответа (JSON и ошибки)
+│   │
+│   ├── service/
+│   │   └── user_service.go    # Бизнес-логика (работа с данными)
+│   │
+│   ├── repository/
+│   │   └── user_repo.go       # Доступ к БД
+│   │
+│   ├── model/
+│   │   └── user.go            # Структуры данных (модели)
+│   │
+│   ├── config/
+│   │   └── config.go          # Настройки приложения (ENV, флаги)
+│   │
+│   └── storage/
+│       └── db.go              # Подключение к БД
+│
+├── pkg/
+│   └── logger/
+│       └── logger.go          # Утилита для логирования
+│
+├── go.mod                     # Модуль Go
+├── go.sum                     # Зависимости
+├── .env                       # Настройки окружения (порт, база)
+└── Makefile                   # Команды сборки и запуска
+
+
+
+Папка / Файл	Назначение
+cmd/api/main.go	Главная точка входа. Отсюда всё запускается.
+internal/api/router.go	Создание роутера chi, регистрация маршрутов.
+internal/api/handler.go	Обработчики HTTP-запросов (например, GetUsers, CreateUser).
+internal/service	Слой бизнес-логики. Тут живут функции, которые решают что делать.
+internal/repository	Работа с базой (CRUD-операции).
+internal/model	Структуры (User, Post, и т.д.) и их JSON-теги.
+internal/storage/db.go	Подключение к Postgres (через sqlx или pgx).
+internal/config/config.go	Загрузка конфигурации из .env или флагов.
+pkg/logger	Общие пакеты, не зависящие от бизнес-логики. Можно переиспользовать.
+.env	Например:
